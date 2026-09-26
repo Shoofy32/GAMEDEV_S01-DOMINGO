@@ -6,29 +6,44 @@ using UnityEngine.Windows;
 
 public class MovementController : MonoBehaviour
 {
-    InputAction moveAction;
-
     [SerializeField]
     CharacterController controller;
+    float gravity = -9.81f;
+    float speed = 5f;
+    float jumpHeight = 2f;
 
+    Vector3 velocity;
     Vector2 moveInput;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        moveAction = InputSystem.actions.FindAction("Move");
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        transform.Translate(new Vector3(moveInput.x, 0, moveInput.y) * Time.deltaTime);
+
+        Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
+
+        move *= speed;
+
+        if (controller.isGrounded && velocity.y < 0)
+            velocity.y = -2f; 
+        else
+            velocity.y += gravity * Time.deltaTime;
+
+        Vector3 total = (move * Time.deltaTime) + new Vector3(0, velocity.y * Time.deltaTime, 0);
+        controller.Move(total);
     }
 
-    public void onMove(InputAction.CallbackContext ctx)
+    public void OnMove(InputValue value)
     {
-        Debug.Log(ctx.phase);
+        moveInput = value.Get<Vector2>();
+    }
+    public void OnLook(InputValue value)
+    {
+        Vector2 lookInput = value.Get<Vector2>();
+        transform.Rotate(Vector3.up, lookInput.x);
+    }
 
-        moveInput = ctx.ReadValue<Vector2>();
+    public void OnJump(InputValue value)
+    {
+        if (value.isPressed && controller.isGrounded)
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
     }
 }
