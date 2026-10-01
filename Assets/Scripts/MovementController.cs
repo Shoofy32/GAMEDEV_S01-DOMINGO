@@ -18,7 +18,7 @@ public class MovementController : MonoBehaviour
     void Update()
     {
 
-        Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
+        Vector3 move = transform.  * moveInput.y;
 
         move *= speed;
 
