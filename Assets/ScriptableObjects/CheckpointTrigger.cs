@@ -1,68 +1,41 @@
+using System;
 using UnityEngine;
 
 public class CheckpointTrigger : MonoBehaviour
 {
-    [SerializeField]
-    GameObject obj;
-
-    [SerializeField]
-    GameObject reward;
-
-    [SerializeField]
-    GameObject rewardSpawn;
+    public static Action StartCountdown;
+    public static Action Stop;
+    public static Action finale;
+    public static Action heal;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && tag =="Rotator")
-        {
-            obj.transform.Rotate(Vector3.right, 45f);
-            
-        }
-
-        if (other.CompareTag("Player") && tag == "Finish")
-        {
-            Instantiate(reward, rewardSpawn.transform.position, rewardSpawn.transform.rotation);
-        }
-
         transform.position = new Vector3(transform.position.x, transform.position.y - 0.1f, transform.position.z);
 
+        if (other.gameObject.CompareTag("Player") && CompareTag("Start"))
+        {
+            StartCountdown?.Invoke();
+        }
+
+        if (other.gameObject.CompareTag("Player") && CompareTag("Finish"))
+        {
+            Stop?.Invoke();
+        }
+
+        if (other.gameObject.CompareTag("Player") && CompareTag("Rotator"))
+        {
+            finale?.Invoke();
+        }
+
+        if (other.gameObject.CompareTag("Player") && CompareTag("Heal"))
+        {
+            heal?.Invoke();
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        
         transform.position = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
-        
-        
     }
-
-    private void OnTriggerStay(Collider other)
-    {   
-        int movementSpeed = 2;
-
-        if (other.CompareTag("Player") && tag == "VerticalUp")
-        {
-            obj.transform.Translate(Vector3.up * movementSpeed * Time.deltaTime);
-            
-        }
-
-        if (other.CompareTag("Player") && tag == "VerticalDown")
-        {
-            obj.transform.Translate(Vector3.down * movementSpeed * Time.deltaTime);
-            
-        }
-
-        if (other.CompareTag("Player") && tag == "HorizontalUp")
-        {
-            obj.transform.Translate(Vector3.right * movementSpeed * Time.deltaTime);
-            
-        }
-
-        if (other.CompareTag("Player") && tag == "HorizontalDown")
-        {
-            obj.transform.Translate(Vector3.left * movementSpeed * Time.deltaTime);
-           
-        }
-
-    }
+       
 }
