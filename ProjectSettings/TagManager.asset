@@ -6,8 +6,15 @@ TagManager:
   tags:
   - Rotator
   - VerticalUp
-  - VerticalDown
-  - HorizontalUp
+  - CinemachineTarget
+  - Start
+  - Heal
+  - TrapUp
+  - TrapSide
+  - TrapDown
+  - trap1
+  - trap2
+  - trap3
   - HorizontalDown
   layers:
   - Default

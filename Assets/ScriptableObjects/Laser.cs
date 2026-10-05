@@ -13,7 +13,7 @@ public class Laser : MonoBehaviour
     {
         if (CompareTag("Start") && startLeon)
         {
-            transform.Translate(new Vector3(0, 0, -5 * superChargeSpeed) * Time.deltaTime);
+            transform.Translate(new Vector3(0, 0, -2 * superChargeSpeed) * Time.deltaTime);
         }
         else if (CompareTag("HorizontalDown"))
         {
@@ -45,7 +45,7 @@ public class Laser : MonoBehaviour
 
     private void superCharge()
     {
-        superChargeSpeed = 1.5f;
+        superChargeSpeed = 3f;
     }
 
     private void end()
