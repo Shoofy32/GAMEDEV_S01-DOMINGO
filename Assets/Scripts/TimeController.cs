@@ -9,7 +9,7 @@ public class TimeController : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI TimerText;
 
-    private float countdownDuration = 60f;
+    private float countdownDuration = 30f;
     public static Action laserSpawn;
     public static Action timeOut;
     public static Action laserWallSpawn;

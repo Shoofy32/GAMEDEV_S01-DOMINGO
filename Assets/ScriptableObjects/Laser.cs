@@ -51,6 +51,7 @@ public class Laser : MonoBehaviour
     private void end()
     {
         superChargeSpeed = 0;
+        startLeon = false;
     }
 
     private void gameStart()

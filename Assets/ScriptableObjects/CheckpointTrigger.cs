@@ -14,36 +14,33 @@ public class CheckpointTrigger : MonoBehaviour
     {
         transform.position = new Vector3(transform.position.x, transform.position.y - 0.1f, transform.position.z);
 
-        if (other.gameObject.CompareTag("Player") && CompareTag("Start"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            StartCountdown?.Invoke();
+            if(CompareTag("Start"))
+            {
+                StartCountdown?.Invoke();
+            }
+            if (CompareTag("Finish"))
+            {
+                Stop?.Invoke();
+            }
+            if (CompareTag("Heal"))
+            {
+                heal?.Invoke();
+            }
+            if (CompareTag("trap1"))
+            {
+                trap?.Invoke();
+            }
+            if (CompareTag("trap2"))
+            {
+                trap2?.Invoke();
+            }
+            if (CompareTag("trap3"))
+            {
+                trap3?.Invoke();
+            }
         }
-
-        if (other.gameObject.CompareTag("Player") && CompareTag("Finish"))
-        {
-            Stop?.Invoke();
-        }
-
-        if (other.gameObject.CompareTag("Player") && CompareTag("Heal"))
-        {
-            heal?.Invoke();
-        }
-
-        if (other.gameObject.CompareTag("Player") && CompareTag("trap1"))
-        {
-            trap?.Invoke();
-        }
-
-        if (other.gameObject.CompareTag("Player") && CompareTag("trap2"))
-        {
-            trap2?.Invoke();
-        }
-
-        if (other.gameObject.CompareTag("Player") && CompareTag("trap3"))
-        {
-            trap3?.Invoke();
-        }
-    
         if (other.gameObject.CompareTag("HorizontalDown") && CompareTag("VerticalUp"))
         {
             DestroyImmediate(other.gameObject);
