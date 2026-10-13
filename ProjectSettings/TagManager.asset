@@ -4,18 +4,11 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Rotator
-  - VerticalUp
   - CinemachineTarget
-  - Start
-  - Heal
-  - TrapUp
-  - TrapSide
-  - TrapDown
-  - trap1
-  - trap2
-  - trap3
-  - HorizontalDown
+  - gun
+  - Rotator
+  - static
+  - dynamic
   layers:
   - Default
   - TransparentFX

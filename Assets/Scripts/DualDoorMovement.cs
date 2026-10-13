@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using System;
 
 public class DualDoorMovement : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class DualDoorMovement : MonoBehaviour
     GameObject lDoor;
 
     bool gameStart = false;
+    private float max = 112.929f;
+
+    public static Action startGame;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,15 +24,22 @@ public class DualDoorMovement : MonoBehaviour
     void Update()
     {
         if (gameStart)
-        {
-            rDoor.transform.position += new Vector3(0.01f, 0, 0);
-            lDoor.transform.position += new Vector3(-0.01f, 0, 0);
+        {   
+            rDoor.transform.rotation *= Quaternion.Euler(0f, -0.21f, 0f);
+            lDoor.transform.rotation *= Quaternion.Euler(0f, 0.21f, 0f);
+            if (lDoor.transform.rotation.eulerAngles.y > max)
+            {
+                gameStart = false;
+                
+                GetComponent<BoxCollider>().enabled = false;
+                startGame?.Invoke();
+            }
         }
     }
 
-    public void OnEnable()
-    {
-        CheckpointTrigger.StartCountdown += OpenDoors;
+    private void OnTriggerEnter(Collider other)
+    {   
+        OpenDoors();
     }
 
     public void OpenDoors()

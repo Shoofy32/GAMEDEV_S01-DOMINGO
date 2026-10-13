@@ -22,14 +22,12 @@ public class PlayerStats : MonoBehaviour
 
     private void OnEnable()
     {
-        Laser.damage += TakeDamage;
-        CheckpointTrigger.heal += Heal;
+
     }
 
     private void OnDisable()
     {
-        Laser.damage -= TakeDamage;
-        CheckpointTrigger.heal -= Heal;
+
     }
 
     private void TakeDamage()

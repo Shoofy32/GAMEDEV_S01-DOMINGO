@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 97105998872460197}
   - component: {fileID: 9103724842119641775}
   - component: {fileID: 7315464791578593406}
-  - component: {fileID: 5014914987405861186}
+  - component: {fileID: 7797491692498647619}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Rotator
@@ -113,7 +113,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.3820884, z: 1}
   m_Center: {x: 0, y: 0.19104421, z: 0}
---- !u!114 &5014914987405861186
+--- !u!114 &7797491692498647619
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,7 +122,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8169571097521902983}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b39749859a25b4747a9db7441d7d2894, type: 3}
+  m_Script: {fileID: 11500000, guid: f500f1633811adc48a20a23250b819dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CheckpointTrigger
-  obj: {fileID: 0}
