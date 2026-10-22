@@ -17,13 +17,9 @@ public class TimeController : MonoBehaviour
 
     public void OnEnable()
     {
-        CheckpointTrigger.StartCountdown += StartCountdownTimer;
-        CheckpointTrigger.Stop += StopCountdownTimer;
     }
     public void OnDisable()
     {
-        CheckpointTrigger.StartCountdown -= StartCountdownTimer;
-        CheckpointTrigger.Stop -= StopCountdownTimer;
     }
     IEnumerator StartTimer()
     {

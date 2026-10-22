@@ -7,11 +7,10 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI hpText;
     public static Action dead;
-    private int hp = 5;
     
     void Start()
     {
-        hpText.text = $"HP: {hp}";
+        hpText.text = $"Press F for Flashlight";
     }
 
     // Update is called once per frame
@@ -22,30 +21,17 @@ public class PlayerStats : MonoBehaviour
 
     private void OnEnable()
     {
-        Laser.damage += TakeDamage;
-        CheckpointTrigger.heal += Heal;
+        Spotlight.playerSpotted += TakeDamage;
     }
 
     private void OnDisable()
     {
-        Laser.damage -= TakeDamage;
-        CheckpointTrigger.heal -= Heal;
+        Spotlight.playerSpotted -= TakeDamage;
     }
 
     private void TakeDamage()
     {
-        hp--;
-        hpText.text = $"HP: {hp}";
-        if (hp <= 0)
-        {
-            dead?.Invoke();
-        }
-    }
-
-    private void Heal()
-    {
-        hp++;
-        hpText.text = $"HP: {hp}";
+        dead?.Invoke(); 
     }
 }   
 
